@@ -1,0 +1,370 @@
+/* ==========================================
+   PANEL PACJENTA – NOWOCZESNY DESIGN MEDYCZNY
+   ========================================== */
+body {
+    background-color: #ffffff;
+}
+
+/* Cały panel zamknięty w #panel-pacjent – reszta strony (np. footer) nietykana */
+#panel-pacjent .panel-nav {
+    background: transparent;
+    border: 1px solid #e0e7ff;
+    border-radius: 1.5rem;
+    padding: 1.25rem;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.1);
+    gap: 1.25rem;
+}
+
+#panel-pacjent .panel-nav button {
+    min-width: 180px;
+    font-weight: 600;
+    border-width: 1px;
+    border-color: #6366f1;
+    background: #f8fafc;
+    color: #312e81;
+    transition: all 0.3s ease;
+    border-radius: 1rem;
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+}
+
+#panel-pacjent .panel-nav button:hover {
+    background-color: #e0e7ff;
+    color: #1e1b4b;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.15);
+}
+
+#panel-pacjent .panel-nav button.active {
+    background-color: #6366f1;
+    color: #fff;
+    border-color: #4f46e5;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);
+}
+
+#panel-pacjent .card {
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e0e7ff;
+}
+
+#panel-pacjent .form-label {
+    font-weight: 600;
+    color: #312e81;
+}
+
+#panel-pacjent hr {
+    border-top: 2px dotted #c7d2fe;
+}
+
+#panel-pacjent h5 {
+    margin-top: 0.75rem;
+    color: #4f46e5;
+}
+
+/* ======== DASHBOARD ======== */
+#panel-pacjent .stat-card {
+    border: 1px solid #e0e7ff;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+}
+
+#panel-pacjent .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(99, 102, 241, 0.15);
+}
+
+#panel-pacjent .stat-card.border-primary:hover {
+    border-color: #6366f1;
+}
+
+#panel-pacjent .stat-card.border-success:hover {
+    border-color: #34d399;
+}
+
+#panel-pacjent .stat-card.border-warning:hover {
+    border-color: #fbbf24;
+}
+
+/* ======== FORMULARZE ======== */
+#panel-pacjent form {
+    background: #f8f9fa;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid #e0e7ff;
+}
+
+#panel-pacjent form input,
+#panel-pacjent form select,
+#panel-pacjent form textarea {
+    border-radius: 1rem;
+    border: 1px solid #c7d2fe;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+#panel-pacjent form input:focus,
+#panel-pacjent form select:focus,
+#panel-pacjent form textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
+}
+
+#panel-pacjent form .btn {
+    border-radius: 1rem;
+    background: #6366f1;
+    border-color: #6366f1;
+    transition: all 0.3s ease;
+}
+
+#panel-pacjent form .btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+
+/* ======== OPINIE – układ jak "Umów wizytę" ======== */
+
+/* na wszelki wypadek: gdyby gdzieś w sekcji pojawiła się .card, niech nie robi nowego kafla */
+#panel-pacjent #section-opinie .card {
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* Gwiazdkowy wybór oceny w formularzu */
+#panel-pacjent #form-opinia .d-flex,
+#panel-pacjent #ocenaWizytyModal .d-flex {
+    justify-content: center;
+    direction: rtl;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#panel-pacjent #form-opinia .btn-outline-warning,
+#panel-pacjent #ocenaWizytyModal .btn-outline-warning {
+    border: none;
+    background: transparent;
+    color: #d1d5db;
+    font-size: 1.8rem;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+#panel-pacjent #form-opinia .btn-outline-warning:hover,
+#panel-pacjent #form-opinia .btn-check:checked+.btn-outline-warning,
+#panel-pacjent #form-opinia .btn-outline-warning:hover~.btn-outline-warning,
+#panel-pacjent #form-opinia .btn-check:checked+.btn-outline-warning~.btn-outline-warning,
+#panel-pacjent #ocenaWizytyModal .btn-outline-warning:hover,
+#panel-pacjent #ocenaWizytyModal .btn-check:checked+.btn-outline-warning,
+#panel-pacjent #ocenaWizytyModal .btn-outline-warning:hover~.btn-outline-warning,
+#panel-pacjent #ocenaWizytyModal .btn-check:checked+.btn-outline-warning~.btn-outline-warning {
+    color: #fbbf24;
+}
+
+#panel-pacjent #form-opinia .btn-outline-warning::before,
+#panel-pacjent #ocenaWizytyModal .btn-outline-warning::before {
+    content: "★";
+}
+
+#panel-pacjent #form-opinia .btn-success {
+    color: #fff !important;
+    background-color: #6366f1 !important;
+    border-color: #6366f1 !important;
+    transition: all 0.2s ease;
+}
+
+#panel-pacjent #form-opinia .btn-success:hover {
+    background-color: #4f46e5 !important;
+    transform: translateY(-2px);
+}
+
+#panel-pacjent #form-opinia .text-muted {
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+/* ======== ANIMACJE ======== */
+#panel-pacjent #section-dashboard,
+#panel-pacjent #section-edit,
+#panel-pacjent #section-visit,
+#panel-pacjent .animate-section {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======== KOMUNIKATY ======== */
+#panel-pacjent #edit-profile-message,
+#panel-pacjent #visit-message,
+#panel-pacjent #opinia-message,
+#panel-pacjent #contact-result {
+    font-weight: 500;
+}
+
+/* ======== RESPONSYWNOŚĆ ======== */
+@media (max-width: 768px) {
+    #panel-pacjent .panel-nav {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    #panel-pacjent .panel-nav button {
+        width: 100%;
+    }
+}
+
+#panel-pacjent .chat-item .badge {
+    font-size: 0.65rem;
+    padding: 0.25em 0.6em;
+}
+
+/* ======== LISTY – wizyty, opinie, rozmowy (oddzielne kafelki) ======== */
+/* kontener listy bez własnego boxa */
+#panel-pacjent #dashboard-details .list-group,
+#panel-pacjent #opinie-lista .list-group,
+#panel-pacjent #chat-list .list-group,
+#panel-pacjent #nieocenione-lista .list-group {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+/* pojedynczy element listy: białe tło + fioletowa ramka */
+#panel-pacjent #dashboard-details .list-group-item,
+#panel-pacjent #opinie-lista .list-group-item,
+#panel-pacjent #chat-list .list-group-item,
+#panel-pacjent #nieocenione-lista .list-group-item {
+    background: #ffffff;
+    border: 1px solid #6366f1;
+    border-radius: 1rem;
+    margin-bottom: 0.75rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+#panel-pacjent #dashboard-details .list-group-item:last-child,
+#panel-pacjent #opinie-lista .list-group-item:last-child,
+#panel-pacjent #chat-list .list-group-item:last-child,
+#panel-pacjent #nieocenione-lista .list-group-item:last-child {
+    margin-bottom: 0;
+}
+
+/* ======== WYGLĄD POJEDYNCZEJ OPINII W LIŚCIE ======== */
+
+#panel-pacjent .opinia-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+/* góra: ocena + meta (np. data) */
+#panel-pacjent .opinia-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+}
+
+#panel-pacjent .opinia-item-stars {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fbbf24;
+}
+
+#panel-pacjent .opinia-item-meta {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+#panel-pacjent .opinia-item-comment {
+    font-size: 0.95rem;
+    color: #111827;
+}
+
+/* Modal oceny wizyty */
+#panel-pacjent #ocenaWizytyModal .btn-outline-warning {
+    font-size: 2rem;
+    transition: transform 0.2s ease;
+}
+
+#panel-pacjent #ocenaWizytyModal .btn-outline-warning:hover {
+    transform: scale(1.2);
+}
+
+/* Poprawka zlewania z wyszukiwarką */
+#panel-pacjent #section-opinie h4.mt-5 {
+    margin-top: 3rem !important;
+}
+
+/* Powiększenie badge'a dla statusu wizyty na desktopach */
+@media (min-width: 992px) {
+    #panel-pacjent #dashboard-details .badge {
+        font-size: 1rem;
+    }
+}
+
+#panel-pacjent .chat-card {
+    cursor: pointer;
+}
+
+#panel-pacjent .chat-card:hover {
+    background-color: #f8f9fa;
+}
+
+/* NAWIGACJA – różne zachowanie na desktop/mobile */
+@media (min-width: 768px) {
+    #panel-pacjent .panel-nav button {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        min-width: auto;
+    }
+
+    #panel-pacjent .panel-nav span {
+        display: inline !important;
+    }
+}
+
+/* Dla mobilnych (max-width: 767px) - wyśrodkowane, ikona obok nazwy */
+@media (max-width: 767px) {
+    #panel-pacjent .panel-nav {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    #panel-pacjent .panel-nav button {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        min-width: 120px;
+        text-align: center;
+        padding: 0.5rem 1rem;
+    }
+
+    #panel-pacjent .panel-nav span {
+        display: inline !important;
+        font-size: 0.9rem;
+    }
+
+    #panel-pacjent .panel-nav i {
+        font-size: 1.2rem;
+    }
+}

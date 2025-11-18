@@ -1,0 +1,146 @@
+<!-- views/index.hbs -->
+{{#section 'styles'}}
+<link rel="stylesheet" href="/css/carousel.css">
+<link rel="stylesheet" href="/css/specializations.css">
+{{/section}}
+
+{{#section 'scripts'}}
+<script src="/js/carousel-smooth.js"></script>
+{{/section}}
+
+<!-- LEKKA KARUZELA – ZERO LAGÓW -->
+<div id="customCarousel" class="custom-carousel" tabindex="0">
+  <div class="carousel-slides">
+    {{#each slides}}
+    <div class="carousel-slide{{#if @first}} active{{/if}}">
+      <img src="{{src}}" data-src="{{src}}" alt="{{title}}" class="carousel-img"
+        loading="{{#if @first}}eager{{else}}lazy{{/if}}">
+
+      <div class="carousel-caption">
+        <div class="text-box">
+          <h3>{{title}}</h3>
+          <p>{{description}}</p>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+  <button class="carousel-control prev" id="prevBtn">❮</button>
+  <button class="carousel-control next" id="nextBtn">❯</button>
+</div>
+
+<!-- SEKCJA SPECJALIZACJI -->
+<section class="py-5 bg-light" id="specializations">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold text-primary">
+      Nasze Specjalizacje
+    </h2>
+
+    <div class="row g-4">
+      {{#each specializations}}
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm hover-shadow">
+          <div class="card-body text-center p-5">
+            <div class="specialization-img mb-4">
+              <img src="{{image}}" alt="{{title}}" class="img-fluid rounded-circle" loading="lazy">
+            </div>
+            <h5 class="card-title fw-bold">{{title}}</h5>
+            <p class="card-text text-muted small">{{description}}</p>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- SEKCJA OPINII – MODERN, MINIMAL, BEZ AVATARÓW -->
+<section class="py-5" id="opinions"
+  style="background: linear-gradient(135deg, #f5f9ff 0%, #e8f4fc 100%); position: relative;">
+  <!-- Subtelny efekt fal (SVG) -->
+  <div class="position-absolute top-0 start-0 w-100 h-100 opacity-5" style="z-index: 0;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#007bff" fill-opacity="0.1"
+        d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+  </div>
+
+  <div class="container position-relative" style="z-index: 1;">
+    <h2 class="text-center mb-5 fw-bold text-primary">
+      Opinie Naszych Pacjentów
+    </h2>
+
+    <div class="row g-4 justify-content-center">
+      <!-- Opinia 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm bg-white rounded-4 overflow-hidden transition-all hover-lift">
+          <div class="card-body p-4 p-md-5 text-center">
+            <div class="mb-3">
+              <div class="text-warning d-inline-flex gap-1">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+            <p class="card-text text-muted fst-italic fs-6 lh-lg mb-4">
+              "Szybka diagnoza, wyniki online w 24h, a lekarz tłumaczy wszystko zrozumiale. Polecam całym sercem!"
+            </p>
+            <div class="text-primary fw-semibold">
+              — Anna K., pacjentka od 3 lat
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opinia 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm bg-white rounded-4 overflow-hidden transition-all hover-lift">
+          <div class="card-body p-4 p-md-5 text-center">
+            <div class="mb-3">
+              <div class="text-warning d-inline-flex gap-1">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+            <p class="card-text text-muted fst-italic fs-6 lh-lg mb-4">
+              "Dzieci nie boją się wizyt. Pediatra z anielską cierpliwością. Szczepienia bez stresu."
+            </p>
+            <div class="text-primary fw-semibold">
+              — Marek S., tata 2 dzieci
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opinia 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 border-0 shadow-sm bg-white rounded-4 overflow-hidden transition-all hover-lift">
+          <div class="card-body p-4 p-md-5 text-center">
+            <div class="mb-3">
+              <div class="text-warning d-inline-flex gap-1">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+            <p class="card-text text-muted fst-italic fs-6 lh-lg mb-4">
+              "Badania serca na najwyższym poziomie. Wszystko dokładnie wyjaśnione. Czuję się pod dobrą opieką."
+            </p>
+            <div class="text-primary fw-semibold">
+              — Janina P., pacjentka kardiologa
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

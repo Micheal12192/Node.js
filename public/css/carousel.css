@@ -1,0 +1,149 @@
+/* public/css/carousel.css */
+#customCarousel {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+.carousel-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    pointer-events: none;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    will-change: opacity;
+}
+
+.carousel-slide.active .carousel-img {
+    opacity: 1;
+}
+
+/* TEKST – IDEALNIE WYŚRODKOWANY */
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 85%;
+    max-width: 700px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+    margin: 0 60px;
+}
+
+.carousel-slide.active .carousel-caption {
+    opacity: 1;
+}
+
+.text-box {
+    background: rgba(0, 77, 64, 0.9);
+    color: white;
+    padding: 1.8rem;
+    border-radius: 1.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* STRZAŁKI */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.carousel-control:hover {
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+    left: 15px;
+}
+
+.next {
+    right: 15px;
+}
+
+@media (max-width: 767.98px) {
+    .carousel-caption {
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 85%;
+        max-width: 420px;
+        margin: 0;
+        padding: 0 10px;
+    }
+
+    .text-box {
+        padding: 1.2rem;
+        text-align: center;
+    }
+
+    .text-box h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .text-box p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    .carousel-control {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+}

@@ -1,0 +1,352 @@
+/* public/css/panel_lekarz.css */
+/* ==========================================
+   PANEL LEKARZA – NOWOCZESNY DESIGN MEDYCZNY
+   ========================================== */
+body {
+    background-color: #ffffff;
+}
+
+/* Cały panel zamknięty w #panel-lekarz, reszta strony nietykana */
+#panel-lekarz .panel-nav {
+    background: transparent;
+    border: 1px solid #e0e7ff;
+    border-radius: 1.5rem;
+    padding: 1.25rem;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.1);
+    gap: 1.25rem;
+}
+
+#panel-lekarz .panel-nav button {
+    min-width: 180px;
+    font-weight: 600;
+    border-width: 1px;
+    border-color: #6366f1;
+    background: #f8fafc;
+    color: #312e81;
+    transition: all 0.3s ease;
+    border-radius: 1rem;
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+}
+
+#panel-lekarz .panel-nav button:hover {
+    background-color: #e0e7ff;
+    color: #1e1b4b;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.15);
+}
+
+#panel-lekarz .panel-nav button.active {
+    background-color: #6366f1;
+    color: #fff;
+    border-color: #4f46e5;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);
+}
+
+/* główna karta otaczająca panel lekarza */
+#panel-lekarz>.card {
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e0e7ff;
+}
+
+/* zagnieżdżone karty w środku, w tym wizyty i statystyki */
+#panel-lekarz .stat-card,
+#panel-lekarz #dashboard-details .card,
+#panel-lekarz #chat-view,
+#panel-lekarz #active-chat-header {
+    border-radius: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: #f9fafb;
+    border: 1px solid #e0e7ff;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+#panel-lekarz #dashboard-details .card-body {
+    padding: 0;
+}
+
+/* wizyty, teksty czytelne i trochę ciaśniejsze */
+#panel-lekarz #dashboard-details .card-body p {
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    color: #111827;
+}
+
+#panel-lekarz #dashboard-details .card-body p strong {
+    color: #000000;
+    font-weight: 600;
+}
+
+/* bloki Notatki Recepty Skierowania wewnątrz wizyty */
+#panel-lekarz #dashboard-details .card-body .border.rounded {
+    border-radius: 0.9rem !important;
+    border-color: #e5e7eb !important;
+    background: #ffffff;
+    font-size: 0.9rem;
+}
+
+#panel-lekarz #dashboard-details .card-body .border.rounded strong {
+    font-size: 0.9rem;
+}
+
+#panel-lekarz #dashboard-details .card-body .small {
+    color: #4b5563;
+}
+
+/* wyrównanie odznak statusu wizyty */
+#panel-lekarz #dashboard-details .badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.6em;
+}
+
+/* mniejsze odstępy między kartami wizyt */
+#panel-lekarz #dashboard-details .card.mb-3 {
+    margin-bottom: 0.9rem !important;
+}
+
+/* Formularze w sekcjach Edytuj profil i Kontakt */
+#panel-lekarz form {
+    background: #f8f9fa;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid #e0e7ff;
+}
+
+#panel-lekarz form input,
+#panel-lekarz form select,
+#panel-lekarz form textarea {
+    border-radius: 1rem;
+    border: 1px solid #c7d2fe;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+#panel-lekarz form input:focus,
+#panel-lekarz form select:focus,
+#panel-lekarz form textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
+}
+
+#panel-lekarz form .btn {
+    border-radius: 1rem;
+    background: #6366f1;
+    border-color: #6366f1;
+    transition: all 0.3s ease;
+}
+
+#panel-lekarz form .btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+
+#panel-lekarz .form-label {
+    font-weight: 600;
+    color: #312e81;
+}
+
+#panel-lekarz hr {
+    border-top: 2px dotted #c7d2fe;
+}
+
+#panel-lekarz h5 {
+    margin-top: 0.75rem;
+    color: #4f46e5;
+}
+
+/* listy wizyt i rozmów */
+#panel-lekarz #dashboard-details .list-group,
+#panel-lekarz #chat-list .list-group {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+#panel-lekarz #dashboard-details .list-group-item,
+#panel-lekarz #chat-list .list-group-item {
+    background: #ffffff;
+    border: 1px solid #6366f1;
+    border-radius: 1rem;
+    margin-bottom: 0.75rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+#panel-lekarz #dashboard-details .list-group-item:last-child,
+#panel-lekarz #chat-list .list-group-item:last-child {
+    margin-bottom: 0;
+}
+
+/* czaty */
+#panel-lekarz .chat-card {
+    cursor: pointer;
+}
+
+#panel-lekarz .chat-card:hover {
+    background-color: #f8f9fa;
+}
+
+/* animacje przełączania sekcji */
+#panel-lekarz #section-dashboard,
+#panel-lekarz #section-contact,
+#panel-lekarz #section-chats {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* komunikaty */
+#panel-lekarz #contact-result {
+    font-weight: 500;
+}
+
+/* modal zarządzania notatkami, receptami, skierowaniami */
+#manageModal .modal-dialog {
+    max-width: 900px;
+}
+
+#manageModal .modal-content {
+    border-radius: 1.5rem;
+}
+
+@media (max-width: 576px) {
+    #manageModal .modal-dialog {
+        margin: 0.5rem;
+    }
+
+    #manageModal .modal-content {
+        max-height: calc(100vh - 1rem);
+        overflow-y: auto;
+    }
+}
+
+/* pasek filtrów wizyt, własny zakres dat, poprawione zachowanie na wąskich ekranach */
+#visits-controls .filter-dates-group .form-control-sm {
+    min-width: 140px;
+}
+
+#visits-controls .filter-buttons-group .btn-sm {
+    white-space: nowrap;
+}
+
+/* desktop, guziki zaraz obok pól, standardowo po prawej */
+@media (min-width: 577px) {
+    #visits-controls .filter-dates-group {
+        flex: 1 1 auto;
+    }
+
+    #visits-controls .filter-buttons-group {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+    }
+}
+
+/* mobile, daty na górze pełna szerokość, a guziki pod spodem obok siebie na środku */
+@media (max-width: 576px) {
+    #visits-controls .filter-dates-group {
+        flex: 1 1 100%;
+    }
+
+    #visits-controls .filter-buttons-group {
+        flex: 1 1 100%;
+        justify-content: center;
+        margin-top: 0.25rem;
+    }
+}
+
+/* responsywność nawigacji */
+@media (max-width: 768px) {
+    #panel-lekarz .panel-nav {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    #panel-lekarz .panel-nav button {
+        width: 100%;
+    }
+
+    /* odrobinę mniejszy padding głównej karty na mniejszych ekranach */
+    #panel-lekarz>.card {
+        padding: 1.75rem;
+    }
+}
+
+#panel-lekarz .chat-item .badge {
+    font-size: 0.65rem;
+    padding: 0.25em 0.6em;
+}
+
+/* nawigacja na desktopie i mobile */
+@media (min-width: 768px) {
+    #panel-lekarz .panel-nav button {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        min-width: auto;
+    }
+
+    #panel-lekarz .panel-nav span {
+        display: inline !important;
+    }
+}
+
+@media (max-width: 767px) {
+    #panel-lekarz .panel-nav {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    #panel-lekarz .panel-nav button {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        min-width: 120px;
+        text-align: center;
+        padding: 0.5rem 1rem;
+    }
+
+    #panel-lekarz .panel-nav span {
+        display: inline !important;
+        font-size: 0.9rem;
+    }
+
+    #panel-lekarz .panel-nav i {
+        font-size: 1.2rem;
+    }
+}
+
+/* separator między datami w filtrze zakresu dat */
+/* separator między datami w filtrze zakresu dat, wycentrowany */
+#visits-controls .filter-dates-group {
+    justify-content: center;
+}
+
+#visits-controls .filter-dates-group span.small {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    min-width: 20px;
+}
+
+/* na bardzo wąskich ekranach cała grupa dat wyrównana do środka */
+@media (max-width: 576px) {
+    #visits-controls .filter-dates-group {
+        justify-content: center;
+    }
+}
+

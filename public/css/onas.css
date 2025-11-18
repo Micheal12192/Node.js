@@ -1,0 +1,124 @@
+:root {
+    --primary: #0d6efd;
+    --accent: #22b8cf;
+    --text-dark: #212529;
+    --text-light: #f8f9fa;
+    --bg-light: #f8f9fa;
+}
+
+/* HERO */
+.hero-section {
+    background: linear-gradient(115deg, var(--primary) 0%, var(--accent) 100%);
+    min-height: 75vh;
+    padding: 6rem 1rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.hero-desc {
+    max-width: 850px;
+    color: #e9ecef;
+    line-height: 1.8;
+}
+
+.hero-section .btn {
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.hero-section .btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* MISSION */
+.mission-section img {
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mission-section p {
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* VALUES */
+.values-section {
+    background-color: var(--bg-light);
+}
+
+.values-section .text-center p {
+    text-align: center;
+}
+
+.value-card {
+    background: #fff;
+    border-radius: 1rem;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(13, 110, 253, 0.15);
+}
+
+/* TEAM */
+.bg-gradient {
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9f5ff 100%);
+}
+
+.team-card {
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    min-height: 370px;
+}
+
+.team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.team-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid var(--primary);
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-card p.text-primary {
+    text-align: center;
+}
+
+/* SUMMARY */
+.summary-section {
+    background-color: var(--bg-light);
+}
+
+.summary-section p {
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* RESPONSYWNOŚĆ */
+@media (max-width: 992px) {
+    .hero-section {
+        padding: 5rem 1rem;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .value-card {
+        padding: 1.5rem;
+    }
+}

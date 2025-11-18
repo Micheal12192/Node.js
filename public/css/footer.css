@@ -1,0 +1,54 @@
+/* public/css/footer.css */
+
+/* Hover dla linków */
+footer a.hover-text-white {
+    transition: color 0.3s ease;
+}
+
+footer a.hover-text-white:hover {
+    color: #fff !important;
+}
+
+/* Większy tekst na desktopie */
+@media (min-width: 992px) {
+    footer h5 {
+        font-size: 1.5rem !important;
+    }
+
+    footer h6 {
+        font-size: 1.25rem !important;
+    }
+
+    footer .fs-6 {
+        font-size: 1rem !important;
+    }
+
+    footer .bi {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* NAPRAWA: brak nakładki przy zoomie */
+footer {
+    margin-top: 0 !important;
+    padding-top: 3rem !important;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    z-index: -1;
+    pointer-events: none;
+}

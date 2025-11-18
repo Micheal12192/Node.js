@@ -1,0 +1,60 @@
+<!-- views/partials/header.hbs -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/images/logo/logo.svg" alt="Klinika+ Lublin" height="48" class="d-inline-block align-top">
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Desktop menu -->
+        <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/">Strona główna</a></li>
+                <li class="nav-item"><a class="nav-link" href="/services">Usługi</a></li>
+                <li class="nav-item"><a class="nav-link" href="/onas">O nas</a></li>
+                <li class="nav-item"><a class="nav-link" href="/lekarze">Lekarze</a></li>
+
+                {{#if session.loggedIn}}
+                <!-- DODANY PANEL -->
+                <li class="nav-item"><a class="nav-link" href="/panel">Panel</a></li>
+
+                <li class="nav-item">
+                    <a class="nav-link logout-link fw-bold" href="/logout" onclick="handleLogout(event)">Wyloguj się</a>
+                </li>
+                {{else}}
+                <li class="nav-item"><a class="nav-link" href="/konto">Konto</a></li>
+                {{/if}}
+            </ul>
+        </div>
+
+        <!-- Mobile offcanvas -->
+        <div class="offcanvas offcanvas-end text-bg-dark d-lg-none" tabindex="-1" id="mobileNav">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title text-white">Menu</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body p-0">
+                <ul class="navbar-nav flex-column w-100">
+                    <li class="nav-item"><a class="nav-link px-4 py-3" href="/">Strona główna</a></li>
+                    <li class="nav-item"><a class="nav-link px-4 py-3" href="/services">Usługi</a></li>
+                    <li class="nav-item"><a class="nav-link px-4 py-3" href="/onas">O nas</a></li>
+                    <li class="nav-item"><a class="nav-link px-4 py-3" href="/lekarze">Lekarze</a></li>
+
+                    {{#if session.loggedIn}}
+                    <li class="nav-item"><a class="nav-link px-4 py-3" href="/panel">Panel</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link px-4 py-3 logout-link fw-bold" href="/logout"
+                            onclick="handleLogout(event)">Wyloguj się</a>
+                    </li>
+                    {{else}}
+                    <li class="nav-item"><a class="nav-link px-4 py-3" href="/konto">Konto</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

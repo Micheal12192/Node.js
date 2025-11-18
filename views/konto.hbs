@@ -1,0 +1,275 @@
+<!-- views/konto.hbs -->
+{{#section 'styles'}}
+<link rel="stylesheet" href="/css/konto.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+{{/section}}
+
+{{#section 'scripts'}}
+<script src="/js/konto.js"></script>
+{{/section}}
+
+<section class="py-5 min-vh-100 d-flex align-items-center" id="auth">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+
+                <!-- Karta -->
+                <div class="card border-0 shadow-xl rounded-4 overflow-hidden">
+
+                    <!-- Przełącznik -->
+                    <div class="card-header bg-white border-0 text-center p-0">
+
+                        <!-- KOMUNIKAT -->
+                        <div id="authMessage" class="container mt-3" style="display: none;">
+                            <div class="p-3 rounded-3 text-center">
+                                <p class="mb-0 fw-bold"></p>
+                            </div>
+                        </div>
+
+                        <ul class="nav nav-pills nav-fill rounded-pill mx-4 mt-4 bg-white shadow-sm" id="authTab"
+                            role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button
+                                    class="nav-link active rounded-pill fw-bold py-3 px-4 d-flex align-items-center justify-content-center gap-2"
+                                    id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button"
+                                    role="tab">
+                                    <i class="bi bi-box-arrow-in-right"></i> Logowanie
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button
+                                    class="nav-link rounded-pill fw-bold py-3 px-4 d-flex align-items-center justify-content-center gap-2"
+                                    id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button"
+                                    role="tab">
+                                    <i class="bi bi-person-add"></i> Rejestracja
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Treść -->
+                    <div class="card-body p-5">
+                        <div class="tab-content" id="authTabContent">
+
+                            <!-- LOGOWANIE -->
+                            <div class="tab-pane fade show active" id="login" role="tabpanel">
+                                <form id="loginForm">
+                                    <div class="mb-4">
+                                        <label for="loginEmail" class="form-label fw-semibold">E-mail</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-envelope-at-fill text-primary"></i>
+                                            </span>
+                                            <input type="email"
+                                                class="form-control border-start-0 rounded-end-pill ps-0"
+                                                id="loginEmail" placeholder="twoj@email.pl" required maxlength="100">
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="loginPassword" class="form-label fw-semibold">Hasło</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-key-fill text-primary"></i>
+                                            </span>
+                                            <input type="password"
+                                                class="form-control border-start-0 rounded-end-pill ps-0"
+                                                id="loginPassword" placeholder="••••••••" required minlength="8"
+                                                maxlength="100">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                                            <label class="form-check-label small fw-medium" for="rememberMe">Zapamiętaj
+                                                mnie</label>
+                                        </div>
+                                        <a href="#" id="forgotPasswordLink"
+                                            class="small text-primary text-decoration-none fw-medium">Zapomniałem
+                                            hasła</a>
+                                    </div>
+                                    <button type="submit"
+                                        class="btn btn-primary w-100 py-3 rounded-pill fw-bold d-flex align-items-center justify-content-center gap-2">
+                                        <i class="bi bi-box-arrow-in-right"></i> Zaloguj się
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- REJESTRACJA -->
+                            <div class="tab-pane fade" id="register" role="tabpanel">
+                                <form id="registerForm">
+                                    <div class="mb-4">
+                                        <label for="regFirstName" class="form-label fw-semibold">Imię</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-person-badge text-success"></i>
+                                            </span>
+                                            <input type="text" class="form-control border-start-0 rounded-end-pill ps-0"
+                                                id="regFirstName" placeholder="Jan" required maxlength="30"
+                                                pattern="[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\- ]+">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="regLastName" class="form-label fw-semibold">Nazwisko</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-person-vcard text-success"></i>
+                                            </span>
+                                            <input type="text" class="form-control border-start-0 rounded-end-pill ps-0"
+                                                id="regLastName" placeholder="Kowalski" required maxlength="50"
+                                                pattern="[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\- ]+">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="regPhone" class="form-label fw-semibold">Telefon kontaktowy</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-telephone-fill text-success"></i>
+                                            </span>
+                                            <input type="text" inputmode="numeric"
+                                                class="form-control border-start-0 rounded-end-pill ps-0" id="regPhone"
+                                                name="regPhone" placeholder="538 438 067" required maxlength="11"
+                                                pattern="\d{3} \d{3} \d{3}">
+                                        </div>
+                                        <small class="text-muted">Wpisz 9 cyfr – spacje dodadzą się
+                                            automatycznie</small>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="regEmail" class="form-label fw-semibold">E-mail</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-envelope-at-fill text-success"></i>
+                                            </span>
+                                            <input type="email"
+                                                class="form-control border-start-0 rounded-end-pill ps-0" id="regEmail"
+                                                placeholder="twoj@email.pl" required maxlength="100">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="regBirthdate" class="form-label fw-semibold">Data urodzenia</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-calendar3 text-success"></i>
+                                            </span>
+                                            <input type="date" class="form-control border-start-0 rounded-end-pill ps-0"
+                                                id="regBirthdate" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="regPesel" class="form-label fw-semibold">PESEL <small
+                                                class="text-muted">(opcjonalnie)</small></label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-credit-card-2-front text-secondary"></i>
+                                            </span>
+                                            <input type="text" class="form-control border-start-0 rounded-end-pill ps-0"
+                                                id="regPesel" placeholder="123 456 78 901" maxlength="14"
+                                                inputmode="numeric" oninput="formatPesel(this)"
+                                                onfocus="this.value = this.value.replace(/\s/g, '')"
+                                                onblur="formatPesel(this)" />
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="regPassword" class="form-label fw-semibold">Hasło</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-key-fill text-success"></i>
+                                            </span>
+                                            <input type="password"
+                                                class="form-control border-start-0 rounded-end-pill ps-0"
+                                                id="regPassword" placeholder="Min. 8 znaków" required minlength="8"
+                                                maxlength="100">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="regConfirm" class="form-label fw-semibold">Powtórz hasło</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-text bg-white border-end-0 rounded-start-pill">
+                                                <i class="bi bi-key-fill text-success"></i>
+                                            </span>
+                                            <input type="password"
+                                                class="form-control border-start-0 rounded-end-pill ps-0"
+                                                id="regConfirm" placeholder="Powtórz hasło" required maxlength="100">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="checkbox" id="terms" required>
+                                        <label class="form-check-label small fw-medium" for="terms">
+                                            Akceptuję <a href="#" class="text-decoration-underline">regulamin</a> i <a
+                                                href="#" class="text-decoration-underline">politykę prywatności</a>
+                                        </label>
+                                    </div>
+
+                                    <button type="submit"
+                                        class="btn btn-success w-100 py-3 rounded-pill fw-bold d-flex align-items-center justify-content-center gap-2">
+                                        <i class="bi bi-person-add"></i> Utwórz konto
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL RESET HASŁA (wysyłka e-maila) -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0 pb-2">
+                <h5 class="modal-title fw-bold text-primary">
+                    <i class="bi bi-key me-2"></i> Reset hasła
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+            </div>
+            <div class="modal-body pt-2">
+                <form id="forgotPasswordForm">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">E-mail</label>
+                        <input type="email" id="forgotEmail" class="form-control" placeholder="twoj@email.pl" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Wyślij link resetujący</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL ZMIANY HASŁA (popup po kliknięciu linku z e-maila) -->
+<div class="modal fade" id="resetPasswordModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0 pb-2">
+                <h5 class="modal-title fw-bold text-primary">
+                    <i class="bi bi-key-fill me-2"></i> Zmień hasło
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+            </div>
+            <div class="modal-body pt-2">
+                <form id="resetPasswordForm">
+                    <input type="hidden" id="resetToken" value="">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Nowe hasło</label>
+                        <input type="password" id="newPassword" class="form-control" placeholder="Min. 8 znaków"
+                            required minlength="8">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Powtórz hasło</label>
+                        <input type="password" id="confirmPassword" class="form-control" placeholder="Powtórz hasło"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Zapisz nowe hasło</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

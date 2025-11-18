@@ -1,0 +1,366 @@
+{{#section "styles"}}
+<link rel="stylesheet" href="/css/panel_lekarz.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+{{/section}}
+
+{{#section "scripts"}}
+<script src="/js/panel_lekarz.js"></script>
+{{/section}}
+
+<div id="panel-lekarz" class="container-fluid py-5" style="max-width: 1600px;">
+    <h2 class="mb-4 text-center fw-bold">Panel lekarza</h2>
+
+    <!-- NAWIGACJA -->
+    <div class="d-flex justify-content-center gap-3 mb-4 panel-nav flex-wrap">
+        <button class="btn btn-outline-primary active d-flex align-items-center gap-2" id="btn-dashboard">
+            <i class="bi bi-speedometer2"></i>
+            <span class="d-inline">Dashboard</span>
+        </button>
+        <button class="btn btn-outline-primary d-flex align-items-center gap-2" id="btn-edit-profile">
+            <i class="bi bi-person-circle"></i>
+            <span class="d-inline">Edytuj profil</span>
+        </button>
+        <button class="btn btn-outline-primary d-flex align-items-center gap-2" id="btn-contact">
+            <i class="bi bi-envelope"></i>
+            <span class="d-inline">Kontakt</span>
+        </button>
+        <button class="btn btn-outline-primary d-flex align-items-center gap-2" id="btn-chats">
+            <i class="bi bi-chat-dots"></i>
+            <span class="d-inline">Rozmowy</span>
+        </button>
+    </div>
+
+    <div class="card shadow-sm p-4">
+        <!-- DASHBOARD -->
+        <div id="section-dashboard">
+            <h4 class="fw-semibold mb-4">Witaj, {{user.tytul_lekarza}} {{user.imie}} {{user.nazwisko}}!</h4>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="card stat-card h-100 text-center border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary fw-bold">Najbliższe wizyty</h5>
+                            <p id="stat-najblizsze" class="fs-3 fw-bold mb-1">—</p>
+                            <small class="text-muted">Tylko przyszłe, zaplanowane</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card h-100 text-center border-info">
+                        <div class="card-body">
+                            <h5 class="card-title text-info fw-bold">Odbyte wizyty</h5>
+                            <p id="stat-odbyte" class="fs-3 fw-bold mb-1">—</p>
+                            <small class="text-muted">Historia wizyt</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card h-100 text-center border-success">
+                        <div class="card-body">
+                            <h5 class="card-title text-success fw-bold">Powiadomienia</h5>
+                            <p id="stat-powiadomienia" class="fs-3 fw-bold mb-1">—</p>
+                            <small class="text-muted">Nowe wiadomości</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASEK NARZĘDZI – filtry + szukajka -->
+            <div id="visits-controls" class="mb-4 d-none">
+                <div class="card border-0 bg-light">
+                    <div class="card-body py-3">
+                        <div class="row g-3 align-items-center">
+                            <!-- Presety zakresu -->
+                            <div class="col-lg-4">
+                                <label class="form-label mb-1 fw-semibold small">Zakres dat</label>
+                                <div class="btn-group btn-group-sm flex-wrap w-100" role="group"
+                                    aria-label="Zakres dat wizyt">
+                                    <button type="button" class="btn btn-outline-primary visits-range-btn active"
+                                        data-range-preset="all">
+                                        Wszystko
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary visits-range-btn"
+                                        data-range-preset="today">
+                                        Dzisiaj
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary visits-range-btn"
+                                        data-range-preset="tomorrow">
+                                        Jutro
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary visits-range-btn"
+                                        data-range-preset="week">
+                                        Najbliższy tydzień
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Własny zakres + RESET -->
+                            <div class="col-lg-5">
+                                <label class="form-label mb-1 fw-semibold small">Własny zakres dat</label>
+                                <div class="d-flex align-items-center gap-2 flex-wrap">
+                                    <div class="d-flex align-items-center gap-2 flex-grow-1 flex-wrap filter-dates-group">
+                                        <input type="date" id="filter-from-date" class="form-control form-control-sm" />
+                                        <span class="small">–</span>
+                                        <input type="date" id="filter-to-date" class="form-control form-control-sm" />
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2 filter-buttons-group">
+                                        <button type="button" id="filter-apply-custom" class="btn btn-sm btn-outline-secondary">
+                                            OK
+                                        </button>
+                                        <button type="button" id="filter-reset" class="btn btn-sm btn-outline-secondary">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Szukaj -->
+                            <div class="col-lg-3">
+                                <label class="form-label mb-1 fw-semibold small">Szukaj</label>
+                                <input type="text" id="search-input" class="form-control form-control-sm"
+                                    placeholder="Pacjent, PESEL, tel, specjalizacja, data...">
+                            
+                                <div class="mt-2 small" id="missing-docs-wrapper">
+                                    <label for="missing-filter" class="form-label mb-1 fw-semibold small">
+                                        Braki w dokumentacji wizyty
+                                    </label>
+                                    <select id="missing-filter" class="form-select form-select-sm">
+                                        <option value="all">Wszystkie odbyte</option>
+                                        <option value="any-missing">Brakuje czegokolwiek</option>
+                                        <option value="no-notes">Brak notatek</option>
+                                        <option value="no-recepty">Brak recept</option>
+                                        <option value="no-skierowania">Brak skierowań</option>
+                                        <option value="complete">Wszystko uzupełnione</option>
+                                    </select>
+                                    <div class="text-muted mt-1" style="font-size: 0.75rem;">
+                                        Działa tylko w historii odbytych wizyt
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista wizyt / powiadomień -->
+            <div id="dashboard-details"></div>
+            <div id="pagination-container" class="d-none mt-3 text-center"></div>
+        </div>
+
+        <!-- EDYTUJ PROFIL LEKARZA -->
+        <div id="section-edit" class="d-none">
+            <h4 class="fw-semibold mb-4 text-center">Edytuj profil</h4>
+
+            <!-- PODGLĄD AVATARA -->
+            <div class="text-center mb-4">
+                <img id="current-avatar"
+                    src="/images/avatar/{{#if user.avatar}}{{user.avatar}}{{else}}default-avatar.png{{/if}}"
+                    class="rounded-circle border" width="120" height="120"
+                    style="object-fit: cover; box-shadow: 0 0 8px rgba(0,0,0,0.2);" alt="Avatar lekarza">
+                <p class="mt-2 mb-0 fw-semibold">
+                    {{#if user.tytul_lekarza}}{{user.tytul_lekarza}} {{/if}}{{user.imie}} {{user.nazwisko}}
+                </p>
+            </div>
+
+            <form id="form-lekarz-profil" class="border rounded p-4 bg-light" enctype="multipart/form-data">
+                <p class="text-muted mb-4">
+                    Wpisz tylko te dane, które chcesz zmienić. Puste pola pozostaną bez zmian.
+                </p>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Zdjęcie profilowe</label>
+                    <input type="file" name="avatar" class="form-control" accept="image/png,image/jpeg,image/webp" />
+                    <small class="text-muted">
+                        Maks. 2MB, PNG/JPG/WEBP. Zostaw puste, jeśli nie chcesz zmieniać.
+                    </small>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="profil-tytul" class="form-label fw-semibold">Tytuł lekarza</label>
+                        <input type="text" id="profil-tytul" name="tytul_lekarza" class="form-control"
+                            placeholder="np. dr n. med." pattern="[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż .]{2,}"
+                            oninput="this.value = this.value.replace(/[^A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż .-]/g, '')">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="profil-telefon" class="form-label fw-semibold">Telefon</label>
+                        <input type="tel" id="profil-telefon" name="telefon" class="form-control"
+                            placeholder="Numer telefonu (9 cyfr)" maxlength="9" pattern="[0-9]{9}" inputmode="numeric"
+                            oninput="this.value = this.value.replace(/\D/g, '').slice(0,9)">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="profil-pwz" class="form-label fw-semibold">Numer PWZ</label>
+                        <input type="text" id="profil-pwz" name="numer_pwz" class="form-control"
+                            placeholder="Numer PWZ (5–7 cyfr)" maxlength="7" pattern="[0-9]{5,7}" inputmode="numeric"
+                            oninput="this.value = this.value.replace(/\D/g, '').slice(0,7)">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="profil-email" class="form-label fw-semibold">E-mail</label>
+                        <input type="email" id="profil-email" name="email" class="form-control"
+                            placeholder="Nowy adres e-mail">
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <h5 class="fw-semibold mb-3">Zmiana hasła (opcjonalnie)</h5>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="profil-old-password" class="form-label fw-semibold">Stare hasło</label>
+                        <input type="password" id="profil-old-password" name="oldPassword" class="form-control"
+                            placeholder="Podaj obecne hasło">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="profil-new-password" class="form-label fw-semibold">Nowe hasło</label>
+                        <input type="password" id="profil-new-password" name="newPassword" class="form-control"
+                            placeholder="Min. 8 znaków" minlength="8" pattern=".{8,}">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-2">
+                    Zapisz zmiany
+                </button>
+            </form>
+            <div id="profil-result" class="mt-3 fw-semibold"></div>
+        </div>
+
+        <!-- KONTAKT -->
+        <div id="section-contact" class="d-none">
+            <h4 class="fw-semibold mb-4">Wyślij wiadomość</h4>
+            <form id="form-contact" class="border rounded p-4 bg-light">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Do kogo</label>
+                    <select id="contact-recipient" class="form-select" required>
+                        <option value="">Wybierz...</option>
+                        <option value="admin">Administrator</option>
+                        <option value="recepcja">Recepcja</option>
+                        <option value="pacjent">Pacjent (wybierz poniżej)</option>
+                    </select>
+                </div>
+                <div class="mb-3 d-none" id="patient-select-container">
+                    <label class="form-label fw-semibold">Pacjent</label>
+                    <select id="contact-patient" class="form-select">
+                        <option value="">Wybierz pacjenta...</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Temat</label>
+                    <input type="text" id="contact-subject" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Wiadomość</label>
+                    <textarea id="contact-message" class="form-control" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Wyślij</button>
+            </form>
+            <div id="contact-result" class="mt-3"></div>
+        </div>
+
+        <!-- ROZMOWY -->
+        <div id="section-chats" class="d-none">
+            <h4 class="fw-semibold mb-4">Twoje rozmowy</h4>
+
+            <div id="active-chat-header"
+                class="d-none mb-3 p-3 bg-light rounded shadow-sm border-start border-primary border-4">
+                <div class="d-flex align-items-center">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold me-3"
+                        style="width: 40px; height: 40px; font-size: 1.1rem;">
+                        <span id="active-chat-initial">P</span>
+                    </div>
+                    <div>
+                        <h6 class="mb-0 fw-bold text-primary" id="active-chat-title">Rozmowa</h6>
+                        <small class="text-muted" id="active-chat-lastmsg">Ostatnia wiadomość: nigdy</small>
+                    </div>
+                </div>
+            </div>
+
+            <div id="search-container-chats" class="d-none mb-3">
+                <div class="input-group">
+                    <input type="text" id="search-input-chats" class="form-control" placeholder="Szukaj w rozmowach...">
+                    <button id="btn-show-all-chats" class="btn btn-outline-secondary">Pokaż wszystkie</button>
+                </div>
+            </div>
+
+            <div id="chat-list" class="list-group mb-3"></div>
+            <div id="pagination-container-chats" class="d-none mt-3 text-center"></div>
+
+            <div id="chat-view" class="border rounded p-3 bg-light d-none mt-4 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 id="chat-title" class="mb-0 fw-bold text-primary"></h5>
+                    <div>
+                        <button id="btn-delete-chat" class="btn btn-sm btn-outline-danger me-2" title="Usuń rozmowę">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <button id="btn-back-to-list" class="btn btn-sm btn-outline-secondary">Wróć</button>
+                    </div>
+                </div>
+                <div id="chat-messages" class="border rounded p-3 mb-3 bg-white"
+                    style="height: 420px; overflow-y: auto; font-size: 1rem; line-height: 1.5;"></div>
+                <form id="form-chat-message" class="input-group">
+                    <input type="text" id="chat-input" class="form-control" placeholder="Napisz wiadomość..."
+                        autocomplete="off" required />
+                    <button type="submit" class="btn btn-primary">Wyślij</button>
+                </form>
+            </div>
+
+            <!-- MODAL USUWANIA ROZMOWY -->
+            <div class="modal fade" id="deleteChatModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 shadow-lg">
+                        <div class="modal-header border-0 pb-2">
+                            <h5 class="modal-title fw-bold text-danger">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                Usunąć rozmowę?
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Zamknij"></button>
+                        </div>
+                        <div class="modal-body pt-2">
+                            <p class="mb-2">Czy na pewno chcesz <strong>trwale usunąć</strong> rozmowę:</p>
+                            <div class="bg-light rounded p-3 text-start border">
+                                <div id="delete-chat-title-modal">—</div>
+                            </div>
+                            <p class="text-muted small mt-3 mb-0">
+                                Tej operacji <strong>nie można cofnąć</strong>.
+                            </p>
+                        </div>
+                        <div class="modal-footer border-0 pt-2">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                            <button type="button" class="btn btn-danger" id="confirm-delete-chat">
+                                <i class="bi bi-trash me-1"></i> Usuń
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DO ZARZĄDZANIA NOTATKAMI, RECEPTAMI I SKIEROWANIAMI -->
+<div class="modal fade" id="manageModal" tabindex="-1" aria-labelledby="manageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="manageModalTitle">Zarządzaj</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Zamknij"></button>
+            </div>
+            <div class="modal-body" id="manageModalBody">
+                <!-- Treść dynamicznie wstawiana przez JS -->
+            </div>
+            <div class="modal-footer">
+                <div id="manageStatus" class="me-auto small"></div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <button type="button" class="btn btn-success" id="manageSaveBtn">
+                    <i class="bi bi-check-lg me-1"></i> Zapisz zmiany
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

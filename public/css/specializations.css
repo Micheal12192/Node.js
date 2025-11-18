@@ -1,0 +1,83 @@
+/* public/css/specializations.css – zamień CAŁY plik na ten kod */
+
+#specializations {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 6rem 0;
+}
+
+#specializations .card {
+    background: white;
+    border-radius: 1.8rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.35s ease;
+    will-change: transform;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#specializations .card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.specialization-img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    padding: 6px;
+    background: linear-gradient(135deg, #004d40, #00796b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 15px rgba(0, 77, 64, 0.3);
+}
+
+.specialization-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+#specializations .card-title {
+    color: #00332b;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+#specializations .card-text {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+@media (min-width: 992px) {
+    .specialization-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    #specializations .card-title {
+        font-size: 1.6rem;
+    }
+
+    #specializations .card-text {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .specialization-img {
+        width: 90px;
+        height: 90px;
+    }
+
+    #specializations .card,
+    #specializations .card:hover {
+        transform: none !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+}

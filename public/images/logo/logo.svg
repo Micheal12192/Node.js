@@ -1,0 +1,39 @@
+<svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- Okrągłe tło – gradient niebieski (medyczny) -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1976d2"/>
+      <stop offset="100%" stop-color="#0d47a1"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="80" r="80" fill="url(#grad)"/>
+  
+  <!-- Biały okrąg wewnętrzny (ramka) -->
+  <circle cx="80" cy="80" r="70" fill="none" stroke="#fff" stroke-width="6"/>
+  
+  <!-- Serce EKG w środku -->
+  <path d="M50 80 L55 70 L62 90 L69 60 L76 80 L80 80" 
+        stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Krzyżyk medyczny w sercu -->
+  <path d="M62 75 v10 h10" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Plus (+) – symbol nazwy -->
+  <path d="M100 75 h20 M110 65 v20" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  
+  <!-- Tekst "Klinika" – łuk górny -->
+  <path id="curve-top" d="M30,50 A50,50 0 0,1 130,50" fill="none"/>
+  <text fill="#fff" font-family="Arial, sans-serif" font-size="18" font-weight="bold">
+    <textPath href="#curve-top" startOffset="50%" text-anchor="middle">
+      Klinika
+    </textPath>
+  </text>
+  
+  <!-- Tekst "Lublin" – łuk dolny -->
+  <path id="curve-bottom" d="M30,110 A50,50 0 0,0 130,110" fill="none"/>
+  <text fill="#bbdefb" font-family="Arial, sans-serif" font-size="14" opacity="0.9">
+    <textPath href="#curve-bottom" startOffset="50%" text-anchor="middle">
+      Lublin
+    </textPath>
+  </text>
+</svg>
